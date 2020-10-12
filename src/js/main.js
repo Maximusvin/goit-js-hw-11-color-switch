@@ -23,6 +23,7 @@ const refs = {
 
 const background = {
   intervalId: null,
+  timeOutId: null,
   isActivBtn: false,
 
   start() {
@@ -33,7 +34,7 @@ const background = {
     this.isActivBtn = true;
     refs.currentColorRef.textContent = 'Стартую событие...';
 
-    setTimeout(() => {
+    this.timeOutId = setTimeout(() => {
       this.intervalId = setInterval(() => {
         document.body.setAttribute(
           'style',
@@ -47,6 +48,7 @@ const background = {
   stop() {
     refs.currentColorRef.textContent = 'Показ закончен!';
     clearInterval(this.intervalId);
+    clearTimeout(this.timeOutId);
     this.isActivBtn = false;
   },
 };
